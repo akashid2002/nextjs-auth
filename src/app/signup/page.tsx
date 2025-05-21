@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const [user, setUser] = useState({
     email: "",
@@ -24,7 +24,6 @@ const page = () => {
         router.push("/login");
       }
     } catch (error: any) {
-      console.log("Error creating user", error?.message);
       toast.error(error?.message);
     } finally {
       setLoading(false);
@@ -85,4 +84,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
