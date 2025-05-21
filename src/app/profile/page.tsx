@@ -13,9 +13,8 @@ export default function ProfilePage() {
       await axios.get("/api/users/logout")
       toast.success("Logout successful");
       router.push("/login");
-    } catch (error: any) {
-      console.log("Error logging out", error?.message);
-      toast.error(error?.message);
+    } catch (error: object | unknown) {
+      toast.error((error as any)?.message);
     } finally { 
     }
   }
@@ -25,9 +24,8 @@ export default function ProfilePage() {
       const {data} = await axios.get("/api/users/me");
       setUser(data?.user);
       toast.success("User fetched successfully");
-    } catch (error: any) {
-      console.log("Error fetching user details", error?.message);
-      toast.error(error?.message);
+    } catch (error: unknown) {
+      toast.error((error as any)?.message);
     }
   }
 
@@ -49,7 +47,6 @@ export default function ProfilePage() {
       <button
         className="bg-blue-500 mt-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         type="button"
-        // onClick={getUserDetail}
       >
         {user?.username}
       </button>
