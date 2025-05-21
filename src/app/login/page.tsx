@@ -29,7 +29,7 @@ export default function LoginPage() {
       const res = await axios.post("/api/users/login", user);
       if (res.status === 200) {
         toast.success("Login successful");
-        router.push("/");
+        router.push("/profile");
       }
     } catch (error: any) {
       console.log("Error logging in", error?.message);
