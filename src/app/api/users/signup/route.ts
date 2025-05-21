@@ -1,12 +1,11 @@
-import {connect} from "@/dbConfig/dbConfig";
+import { connect } from "@/dbConfig/dbConfig";
 import User from "@/models/userModel";
 import { NextResponse, NextRequest } from "next/server";
 import bcryptjs from "bcryptjs";
 
 connect();
 
-
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest): Promise<NextResponse> {
     try {
         const reqBody = await request.json();
         const {username, email, password} = reqBody;
@@ -35,8 +34,8 @@ export async function POST(request: NextRequest) {
             user: savedUser
         });
 
-    } catch (error: any) {
-        return NextResponse.json({error: error.message},
+    } catch (error:  object | unknown) {
+        return NextResponse.json({error: (error as any)?.message},
             {status: 500});
     }
 }
